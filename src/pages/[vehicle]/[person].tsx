@@ -10,6 +10,13 @@ interface IList {
     }[]
 }
 
+interface MyNextPage extends NextPageContext {
+    query: {
+        person: string
+        vehicle: string
+    }
+}
+
 export default function People({ list }: IList) {
     const router = useRouter()
 
@@ -25,7 +32,7 @@ export default function People({ list }: IList) {
     </div>)
 }
 
-People.getInitialProps = async (ctx: NextPageContext) => {
+People.getInitialProps = async (ctx: MyNextPage) => {
     console.log(ctx.req)
     return {
         list: [
