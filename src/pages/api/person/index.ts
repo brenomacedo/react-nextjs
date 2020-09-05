@@ -5,8 +5,12 @@ import User from '../../../models/User'
 export default async function createPerson(req: NextApiRequest, res: NextApiResponse) {
     if(req.method === 'POST') {
         const user = await User.create({
-            name: req.body.name
-        })
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+        }) as unknown as any
+
+        user.password = undefined
 
         return res.status(201).json(user)
     } else {

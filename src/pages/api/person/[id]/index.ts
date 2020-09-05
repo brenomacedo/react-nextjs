@@ -4,7 +4,7 @@ import User from '../../../../models/User'
 export default async function getPersonById(req: NextApiRequest, res: NextApiResponse) {
     if(req.method === "GET") {
         try {
-            const user = await User.findById(req.query.id)
+            const user = await User.findById(req.query.id).select({ name: 1, password: 1 })
             return res.status(200).json(user)
         } catch {
             return res.status(401).json({ message: "user not found" })
