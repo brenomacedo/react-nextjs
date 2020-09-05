@@ -19,7 +19,6 @@ interface MyNextPage extends NextPageContext {
 
 export default function People({ list }: IList) {
     const router = useRouter()
-
     return (<div>
         <h2>{router.query.person} = {router.query.vehicle}</h2>
         {list.map((p, index) => (
