@@ -1,9 +1,13 @@
-import Container from '../containers/config'
+import Head from 'next/head'
 
 export default function index() {
     return (
-        <Container title="pagina inicial">
+        <div>
+            <Head>
+                <title>HELLO!</title>
+            </Head>
             <div>hello world</div>
-        </Container>
+        </div>
+        
     )
 }
