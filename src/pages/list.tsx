@@ -1,7 +1,18 @@
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { AppContext } from 'next/app'
+import { useEffect, useState, FC } from 'react'
+import { NextPageContext } from 'next'
 
-export default function List({ ownerlist }) {
+interface Owner {
+    ownerName: string
+    vehicle: string
+}
+
+interface IList {
+    ownerlist: Owner[]
+}
+
+export default function List ({ ownerlist }: IList) {
 
     return (
         <div>
@@ -16,7 +27,7 @@ export default function List({ ownerlist }) {
     )
 }
 
-List.getInitialProps = async (ctx) => {
+List.getInitialProps = async (ctx: NextPageContext) => {
     // const response = await fetch('http://localhost:4001/vehicles')
     // const ownerlist = response.json()
     return { ownerlist: [{ vehicle: 'car', ownerName: 'breno' }] }

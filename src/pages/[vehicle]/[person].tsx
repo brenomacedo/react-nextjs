@@ -1,13 +1,22 @@
 import { useRouter } from 'next/router'
+import { AppContext } from 'next/app'
 import Link from 'next/link'
+import { NextPageContext } from 'next'
 
-export default function People({ list }) {
+interface IList {
+    list: {
+        v: string
+        name: string
+    }[]
+}
+
+export default function People({ list }: IList) {
     const router = useRouter()
 
     return (<div>
         <h2>{router.query.person} = {router.query.vehicle}</h2>
-        {list.map(p => (
-            <div key={p.name}>
+        {list.map((p, index) => (
+            <div key={index}>
                 <Link as={`/${p.v}/${p.name}`} href="/[vehicle]/[person]">
                     <a>navigate to {p.name}'s {p.v}</a>
                 </Link>
@@ -16,7 +25,7 @@ export default function People({ list }) {
     </div>)
 }
 
-People.getInitialProps = async (ctx) => {
+People.getInitialProps = async (ctx: NextPageContext) => {
     console.log(ctx.req)
     return {
         list: [
